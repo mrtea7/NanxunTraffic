@@ -22,8 +22,20 @@ export class MapServerPage {
     if (!val || !val.trim()) {
       this.currentItems = [];
       return;
+    } else if (val == "haha") {
+      this.currentItems = [{name: "haha", about: "hahaabout",note:"nitamadechoushabi"}]
+    } else if (val == "ha") {
+      this.currentItems = [
+        {name: "haha", about: "hahaabout",note:"nitamadechoushabi"},
+        {name: "hahiaha", about: "hahiahaabout"},
+        {name: "ha", about: "haabout"}
+      ]
     }
-    console.log("<this.currentItems>",val);
+  }
+
+  openItem(item) {
+   console.log("<item>",item);
+    this.currentItems = [];
   }
 
   loadMap(ele, mapServer) {
