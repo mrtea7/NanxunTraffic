@@ -1,0 +1,50 @@
+page-route {
+  .route-head {
+    background-color: color($colors, platform, base);
+    .route-search-box {
+      position: relative;
+      ion-item, ion-label > span {
+        background-color: color($colors, platform, base);
+        color: color($colors, platform, light);
+      }
+      .route-search-begin {
+        width: 30px;
+        height: 88px;
+      }
+      .route-search-end {
+        display: flex;
+        align-items: center;
+        color: color($colors, platform, light);
+      }
+    }
+    .router-type-wrap {
+      display: flex;
+      justify-content: space-around;
+      .type {
+        border-bottom: 3px solid color($colors, platform, light);
+      }
+    }
+  }
+
+  .map_container {
+    width: 100%;
+    height: 100%;
+  }
+  .route-card {
+    text-align: center;
+    .route-card-header {
+      background-color: color($colors, platform, base);
+      color: color($colors, platform, light);
+    }
+    .route-card-content {
+      .time, .distance {
+        color: color($colors, platform, base);
+      }
+      .time {
+        font-size: large;
+      }
+
+    }
+  }
+
+}

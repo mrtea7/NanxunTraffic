@@ -1,0 +1,35 @@
+page-home {
+  .home-bg {
+    background-image: url("../../assets/imgs/home-bg.png");
+  }
+  .title {
+    font-size: 30px;
+  }
+  h1 {
+    height: 150px;
+    vertical-align: bottom;
+    padding-top: 100px;
+    margin: auto;
+    color: color($colors, platform, light);
+  }
+  ion-icon {
+    font-size: 80px;
+  }
+  .menu-warp {
+    padding: 0 50px;
+  }
+  .nav {
+    text-align: center;
+    .nav-img {
+      border-radius: 30px;
+      border-color: color($colors, platform, border);
+      height: 100px;
+      width: 100px;
+      color: color($colors, platform, light);
+    }
+    .nav-des {
+      color:color($colors, platform, light);
+    }
+  }
+
+}

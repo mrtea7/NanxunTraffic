@@ -1,0 +1,13 @@
+button-group {
+  .wrap {
+    display: flex;
+    justify-content: space-around;
+    .type {
+      border-bottom: 3px solid color($colors, platform, light);
+      button {
+        color: color($colors, platform, light);
+      }
+    }
+  }
+
+}
