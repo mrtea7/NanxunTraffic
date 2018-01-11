@@ -24,10 +24,25 @@ export class AmapProvider {
       });
       this.mapName = mapName;
       console.log(`${mapName} map init`);
+
       return this.map;
     }
 
   }
+  drawRoute() {
+
+    let self = this;
+    AMap.plugin('AMap.Driving',function(){
+      var drving = new AMap.Driving({
+        map:self.map
+      });
+      drving.search([
+        {keyword:'宁波站',city:'宁波'},
+        {keyword:'宁波栎社国际机场',city:'宁波'}
+      ]);
+    })
+  }
+
 
   destroyMap(mapName) {
     if (this.mapName == mapName) {

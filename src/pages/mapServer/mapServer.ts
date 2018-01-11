@@ -34,12 +34,12 @@ export class MapServerPage {
   }
 
   openItem(item) {
-   console.log("<item>",item);
+    this.amapProvider.drawRoute();
     this.currentItems = [];
   }
 
-  loadMap(ele, mapServer) {
-    this.amapProvider.initMap(ele, mapServer);
+  loadMap(ele, mapName) {
+    this.amapProvider.initMap(ele, mapName);
     /*this.map = new AMap.Map('map_container', {
      resizeEnable: true,
      zoom: 11,
