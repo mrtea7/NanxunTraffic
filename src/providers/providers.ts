@@ -1,7 +1,7 @@
-import { AmapProvider } from './Amap/Amap';
 import { ApiProvider } from './api/api.service';
+import { AmapProvider } from './Amap/Amap';
 
 export {
-  AmapProvider,
-  ApiProvider
+  ApiProvider,
+  AmapProvider
 };

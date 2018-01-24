@@ -8,6 +8,8 @@ import {AmapProvider} from '../../providers/providers'
   selector: 'page-route',
   templateUrl: 'route.html'
 })
+
+
 export class RoutePage {
   routes: any[] = [
     {type: '推荐', time: '54', distance: '19.4'},
@@ -15,6 +17,7 @@ export class RoutePage {
     {type: '时间最短', time: '50', distance: '21.4'}
 
   ];
+  route: any = {start: "", end: ""};
 
   @ViewChild('map_container') map_container: ElementRef;
 
@@ -25,10 +28,21 @@ export class RoutePage {
     this.amapProvider.initMap(ele, mapName);
   }
 
+  drawDriving() {
+    this.amapProvider.drawDriving(this.route)
+  }
+
+  drawTransfer() {
+    this.amapProvider.drawTransfer(this.route)
+  }
+
   ionViewWillEnter() {
     this.loadMap(this.map_container.nativeElement, 'route');
   }
 
+  showRoute(route){
+
+  }
   ionViewWillLeave() {
     this.amapProvider.destroyMap('route')
   }

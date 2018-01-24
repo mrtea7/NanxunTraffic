@@ -10,12 +10,12 @@
 
         <ion-item>
           <ion-label><span>从</span></ion-label>
-          <ion-input type="text" placeholder="起点"></ion-input>
+          <ion-input type="text" id="route_start" [(ngModel)]="route.start" placeholder="起点"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label><span>到</span></ion-label>
-          <ion-input type="text" placeholder="终点"></ion-input>
+          <ion-input type="text" id="route_end" [(ngModel)]="route.end" placeholder="终点"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col class="route-search-end" col-2>
@@ -23,10 +23,10 @@
       </ion-col>
     </ion-row>
     <ion-row class="router-type-wrap">
-      <div class="type">
-        <button ion-button clear>公交</button>
+      <div class="type" (click)="drawDriving()">
+        <button ion-button clear>驾车</button>
       </div>
-      <div>
+      <div (click)="drawTransfer()">
         <button ion-button clear>公交</button>
       </div>
       <div>
