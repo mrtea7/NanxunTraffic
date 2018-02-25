@@ -68,6 +68,9 @@ export class MapServerPage {
     }
   }
 
+  locate (){
+    alert("点击了")
+  }
   openItem(item) {
     switch (item.type) {
       case "line":

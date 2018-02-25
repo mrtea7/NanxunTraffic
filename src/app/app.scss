@@ -14,3 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+@font-face {font-family: "Ionicons";
+  src: url('../assets/myFont/iconfont.eot?t=1517138592547'); /* IE9*/
+  src: url('../assets/myFont/iconfont.eot?t=1517138592547#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../assets/myFont/data:application/x-font-woff;charset=utf-8;base64,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') format('woff'),
+  url('../assets/myFont/iconfont.ttf?t=1517138592547') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../assets/myFont/iconfont.svg?t=1517138592547#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-zihangche:before { content: "\e619"; }
+

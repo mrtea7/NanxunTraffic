@@ -106,7 +106,7 @@ export class AmapProvider {
       let placeSearch = new AMap.PlaceSearch({
         city:'北京',
         map:self.map
-      })
+      });
       AMap.event.addListener(autocomplete, "select", function(e){
         //TODO 针对选中的poi实现自己的功能
         placeSearch.setCity(e.poi.adcode);
