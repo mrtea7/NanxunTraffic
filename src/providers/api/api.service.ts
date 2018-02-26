@@ -12,13 +12,15 @@ export class AppGlobal {
     products: "_dress_products"
   }
   //接口基地址
-  static domain = "https://tlimama.tongedev.cn";
+  // static domain = "https://tlimama.tongedev.cn";
+  static domain = "http://gc.ditu.aliyun.com";
 
   //接口地址
   static API: any = {
     getCategories: '/api/ionic3/getCategories',
-    getProducts: '/api/ionic3/getProducts',
-    getDetails: '/api/ionic3/details'
+    getProducts: '/api/ionic/getProducts',
+    getDetails: '/api/ionic3/details',
+    getTest:'/geocoding'
   };
 }
 

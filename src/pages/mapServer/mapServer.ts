@@ -1,6 +1,7 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 
+import {ApiProvider,AppGlobal } from '../../providers/providers'
 import {AmapProvider} from '../../providers/providers'
 
 @IonicPage()
@@ -47,7 +48,7 @@ export class MapServerPage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public amapProvider: AmapProvider) {
+  constructor(public navCtrl: NavController, public amapProvider: AmapProvider, public apiProvider: ApiProvider) {
   }
 
   filterItems(ev) {
@@ -65,6 +66,8 @@ export class MapServerPage {
         {name: "公交站", about: "浙江省杭州市西湖区", note: "很多点", type: "points"},
         {name: "远眺科技有限公司", about: "余杭区文一西路1326号", note: "利尔达物联网科技园区", type: "point"}
       ]
+    }else {
+      this.getCategories()
     }
   }
 
@@ -107,6 +110,13 @@ export class MapServerPage {
 
   ionViewWillLeave() {
     this.amapProvider.destroyMap('mapServer')
+  }
+  //获取分类
+  getCategories() {
+    this.apiProvider.httpGet(AppGlobal.API.getTest, { a: '杭州市' }, rs => {
+      console.log(rs);
+
+    })
   }
 
 }

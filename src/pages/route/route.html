@@ -18,7 +18,7 @@
           <ion-input type="text" id="route_end" [(ngModel)]="route.end" placeholder="终点"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col class="route-search-end" col-2>
+      <ion-col class="route-search-end" col-2 (click)="swap()">
         <ion-icon name="git-compare"></ion-icon>
       </ion-col>
     </ion-row>
@@ -30,10 +30,10 @@
         <button ion-button clear>公交</button>
       </div>
       <div>
-        <button ion-button clear>公交</button>
+        <button ion-button clear>骑行</button>
       </div>
       <div>
-        <button ion-button clear>公交</button>
+        <button ion-button clear>步行</button>
       </div>
     </ion-row>
   </div>

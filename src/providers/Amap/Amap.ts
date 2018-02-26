@@ -100,7 +100,6 @@ export class AmapProvider {
     AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
       let autoOptions = {
         city: "北京", //城市，默认全国
-        input: "route_start"//使用联想输入的input的id
       };
      let autocomplete= new AMap.Autocomplete(autoOptions);
       let placeSearch = new AMap.PlaceSearch({
