@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { LoadingController, AlertController, ToastController } from 'ionic-angular';
+import {LoadingController, AlertController, ToastController} from 'ionic-angular';
 
 
 /**
@@ -11,13 +11,15 @@ declare let AMap;
 @Injectable()
 export class AmapProvider {
   map: any;//地图对象
+  auto: any;
   mapName: string;//地图名字
 
-  constructor(public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl: ToastController ) {
+  constructor(public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl: ToastController) {
   }
 
   initMap(ele, mapName) {
     if (this.mapName != mapName) {
+      console.log("<Amap>", AMap);
       this.map = new AMap.Map(ele, {
         view: new AMap.View2D({//创建地图二维视口
           zoom: 11, //设置地图缩放级别
@@ -31,48 +33,57 @@ export class AmapProvider {
     }
 
   }
-  clearMap(){
+
+
+  clearMap() {
     this.map.clearMap();
   }
-  drawDriving(item) {
+  //驾车路线
+  drawDriving(item, drivingPolicy) {
     this.map.clearMap();
     let self = this;
-    AMap.plugin('AMap.Driving',function(){
+    AMap.plugin('AMap.Driving', function () {
       let driving = new AMap.Driving({
-        map:self.map
+        map: self.map,
+        policy: drivingPolicy || AMap.DrivingPolicy.LEAST_TIME
       });
       driving.search([
-        {keyword:item.start,city:'杭州'},
-        {keyword:item.end,city:'杭州'}
-      ],function (status,result) {
-        if(status == "error"){
+        {keyword: item.start.place, city: item.start.city},
+        {keyword: item.end.place, city: item.end.city}
+      ], function (status, result) {
+        if (status == "error") {
           self.alert(result.info);
         }
-        console.log("<status>",status);
-        console.log("<result>",result);
+        console.log("<status>", status);
+        console.log("<result>", JSON.stringify(result));
       });
     })
   }
+
   //公交换乘
-  drawTransfer(item) {
+  drawTransfer(item, callBack) {
     this.map.clearMap();
     let self = this;
-    AMap.plugin('AMap.Transfer',function(){
+    AMap.plugin('AMap.Transfer', function () {
       let transfer = new AMap.Transfer({
-        map:self.map
+        map: self.map
       });
       transfer.search([
-        {keyword:item.start,city:'杭州'},
-        {keyword:item.end,city:'杭州'}
-      ],function (status,result) {
-        if(status == "error"){
+        {keyword: item.start.place, city: item.start.city},
+        {keyword: item.end.place, city: item.end.city}
+      ], function (status, result) {
+        if (status == "error") {
           self.alert(result.info);
         }
-        console.log("<status>",status);
-        console.log("<result>",result);
+        if (callBack instanceof Function) {
+          callBack(result);
+        }
+        // console.log("<status>",status);
+        // console.log("<result>", result);
       });
     })
   }
+
   //点标注
   drawPoints(item) {
     this.clearMap();
@@ -95,18 +106,19 @@ export class AmapProvider {
     self.map.setFitView();
 
   }
-  autoComplete(item){
+
+  autoComplete() {
     let self = this;
-    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+    AMap.plugin(['AMap.Autocomplete', 'AMap.PlaceSearch'], function () {
       let autoOptions = {
-        city: "北京", //城市，默认全国
+        city: "", //城市，默认全国
+        input: "route_start"
       };
-     let autocomplete= new AMap.Autocomplete(autoOptions);
+      let autocomplete = new AMap.Autocomplete(autoOptions);
       let placeSearch = new AMap.PlaceSearch({
-        city:'北京',
-        map:self.map
+        map: self.map
       });
-      AMap.event.addListener(autocomplete, "select", function(e){
+      AMap.event.addListener(autocomplete, "select", function (e) {
         //TODO 针对选中的poi实现自己的功能
         placeSearch.setCity(e.poi.adcode);
         placeSearch.search(e.poi.name)
@@ -138,6 +150,7 @@ export class AmapProvider {
       callback();
     }
   }
+
   alert(message, callback?) {
     if (callback) {
       let alert = this.alertCtrl.create({

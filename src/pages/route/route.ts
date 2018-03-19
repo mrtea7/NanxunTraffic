@@ -13,12 +13,13 @@ import {AmapProvider} from '../../providers/providers'
 export class RoutePage {
   routes: any[] = [
     {type: '推荐', time: '54', distance: '19.4'},
-    {type: '方案2', time: '55', distance: '19.4'},
+    {type: '距离最短', time: '55', distance: '19.4'},
     {type: '时间最短', time: '50', distance: '21.4'}
 
   ];
-  route: any = {start: "", end: "",temp:""};
-
+  route: any = {start: {city: "", place: ""}, end: {city: "", place: ""}, temp: {city: "", place: ""}};
+  drawType: string;
+  auto: any;
   @ViewChild('map_container') map_container: ElementRef;
 
   constructor(public navCtrl: NavController, public amapProvider: AmapProvider) {
@@ -27,27 +28,82 @@ export class RoutePage {
   loadMap(ele, mapName) {
     this.amapProvider.initMap(ele, mapName);
   }
+
   //切换起始点
   swap() {
-    this.route.temp = this.route.start;
-    this.route.start = this.route.end;
-    this.route.end = this.route.temp;
-  }
-  //
-  drawDriving() {
-    this.amapProvider.drawDriving(this.route)
+    this.route.temp.city = this.route.start.city;
+    this.route.temp.place = this.route.start.place;
+    this.route.start.city = this.route.end.city;
+    this.route.start.place = this.route.end.place;
+    this.route.end.city = this.route.temp.city;
+    this.route.end.place = this.route.temp.place;
   }
 
+  //重新设置起始点名称
+  reName(data) {
+    this.route.start.place = data.originName;
+    this.route.end.place = data.destinationName;
+  }
+
+  //驾车线路规划
+  drawDriving(policy) {
+    this.drawType = "driving";
+    this.checkRouteEmpty();
+    let drivingPolicy = policy;
+    this.amapProvider.drawDriving(this.route, drivingPolicy)
+  }
+
+  //公交路线规划
   drawTransfer() {
-    this.amapProvider.drawTransfer(this.route)
+    this.drawType = "transfer";
+    let self = this;
+    this.amapProvider.drawTransfer(this.route, function (data) {
+      self.reName(data)
+    })
+  }
+
+  //骑车线路规划
+  drawRiding() {
+    this.drawType = "riding";
+    // this.amapProvider.drawDriving(this.route)
+  }
+
+  //步行线路规划
+  drawWalking() {
+    this.drawType = "walking";
+    // this.amapProvider.drawDriving(this.route)
+  }
+
+
+  showRoute(policy) {
+    alert(this.drawType);
+    switch (this.drawType) {
+      case "driving":
+        this.drawDriving(policy);
+        break;
+      case "transfer":
+        this.drawTransfer();
+        break;
+      case "riding":
+        break;
+      case "walking":
+        break;
+
+    }
+  }
+
+  checkRouteEmpty() {
+    if (this.route.start.city == "" || this.route.start.place == "" || this.route.end.city == "" || this.route.start.place == "") {
+      return true
+    } else
+      return false
   }
 
   ionViewWillEnter() {
     this.loadMap(this.map_container.nativeElement, 'route');
   }
 
-  showRoute(route) {
-
+  ionViewDidLoad() {
   }
 
   ionViewWillLeave() {

@@ -10,12 +10,15 @@
 
         <ion-item>
           <ion-label><span>从</span></ion-label>
-          <ion-input type="text" id="route_start" [(ngModel)]="route.start" placeholder="起点"></ion-input>
+          <ion-input type="text" [(ngModel)]="route.start.city" placeholder="城市"></ion-input>
+          <ion-input type="text" [(ngModel)]="route.start.place" placeholder="起点"></ion-input>
+
         </ion-item>
 
         <ion-item>
           <ion-label><span>到</span></ion-label>
-          <ion-input type="text" id="route_end" [(ngModel)]="route.end" placeholder="终点"></ion-input>
+          <ion-input type="text" [(ngModel)]="route.end.city" placeholder="城市"></ion-input>
+          <ion-input type="text" [(ngModel)]="route.end.place" placeholder="终点"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col class="route-search-end" col-2 (click)="swap()">
@@ -23,16 +26,16 @@
       </ion-col>
     </ion-row>
     <ion-row class="router-type-wrap">
-      <div class="type" (click)="drawDriving()">
+      <div [ngClass]="{'type':drawType == 'driving'}" (click)="drawDriving()">
         <button ion-button clear>驾车</button>
       </div>
-      <div (click)="drawTransfer()">
+      <div [ngClass]="{'type':drawType == 'transfer'}" (click)="drawTransfer()">
         <button ion-button clear>公交</button>
       </div>
-      <div>
+      <div [ngClass]="{'type':drawType == 'riding'}" (click)="drawRiding()">
         <button ion-button clear>骑行</button>
       </div>
-      <div>
+      <div [ngClass]="{'type':drawType == 'walking'}" (click)="drawWalking()">
         <button ion-button clear>步行</button>
       </div>
     </ion-row>
@@ -41,7 +44,7 @@
 <ion-content>
   <div #map_container class="map_container"></div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="drawType">
   <ion-row>
     <ion-col col-4 *ngFor="let route of routes" (click)="showRoute(route)">
       <ion-card class="route-card">
