@@ -39,9 +39,18 @@ export class AmapProvider {
     this.map.clearMap();
   }
   //驾车路线
-  drawDriving(item, drivingPolicy) {
+  drawDriving(item, policy) {
     this.map.clearMap();
     let self = this;
+    let drivingPolicy;
+    switch (policy){
+      case "time":
+        drivingPolicy = AMap.DrivingPolicy.LEAST_TIME;
+        break;
+      case "distance":
+        drivingPolicy = AMap.DrivingPolicy.LEAST_DISTANCE;
+        break;
+    }
     AMap.plugin('AMap.Driving', function () {
       let driving = new AMap.Driving({
         map: self.map,

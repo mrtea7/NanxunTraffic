@@ -13,14 +13,14 @@ export class AppGlobal {
   }
   //接口基地址
   // static domain = "https://tlimama.tongedev.cn";
-  static domain = "http://gc.ditu.aliyun.com";
+  static domain = "http://192.168.1.84:8080/pf.web.runtime/nanxun.app";
 
   //接口地址
   static API: any = {
     getCategories: '/api/ionic3/getCategories',
     getProducts: '/api/ionic/getProducts',
     getDetails: '/api/ionic3/details',
-    getTest:'/geocoding'
+    getTest:'/initial/initialQuery'
   };
 }
 

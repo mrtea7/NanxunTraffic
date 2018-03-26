@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild, ElementRef} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 
-import {ApiProvider} from '../../providers/providers'
-
+import {AmapProvider} from '../../providers/providers'
 
 @IonicPage()
 @Component({
@@ -10,14 +9,20 @@ import {ApiProvider} from '../../providers/providers'
   templateUrl: 'priServer.html'
 })
 export class PriServerPage {
-
-  constructor(public navCtrl: NavController, public apiProvider: ApiProvider) {
-    apiProvider.alert("apiProvider.alert")
+  @ViewChild('map_container') map_container: ElementRef;
+  constructor(public navCtrl: NavController, public amapProvider: AmapProvider) {
   }
-  dahaha(){
-    alert(2)
+  loadMap(ele, mapName) {
+    this.amapProvider.initMap(ele, mapName);
+
+  }
+  ionViewWillEnter() {
+    this.loadMap(this.map_container.nativeElement, 'priServer');
   }
 
+  ionViewWillLeave() {
+    this.amapProvider.destroyMap('priServer')
+  }
 
 
 }

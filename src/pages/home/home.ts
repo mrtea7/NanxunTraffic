@@ -7,12 +7,11 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
   menus:any[] =[
-    {icon:'add-circle',name:'地图服务',component: 'MapServerPage' },
-    {icon:'add-circle',name:'公众交通',component: 'PubTransPage' },
-    {icon:'add-circle',name:'私家车服务',component: 'PriServerPage'},
-    {icon:'add-circle',name:'路况信息',component: 'TraInfoPage'}
+    {icon:'icon-ditu',name:'地图服务',component: 'MapServerPage' },
+    {icon:'icon-shangban',name:'公众交通',component: 'PubTransPage' },
+    {icon:'icon-dkw_qiche',name:'私家车服务',component: 'PriServerPage'},
+    {icon:'icon-xinxi1',name:'路况信息',component: 'TraInfoPage'}
   ];
 
   constructor(public navCtrl: NavController) {

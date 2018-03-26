@@ -7,7 +7,10 @@
     <ion-row class="menu-warp">
       <ion-col col-6 class="nav" *ngFor="let menu of menus" (click)="openPage(menu)">
         <button class="nav-img" ion-button outline>
-          <ion-icon name="add-circle"></ion-icon>
+          <i class="iconfont icon-ditu" *ngIf="menu.icon=='icon-ditu'"></i>
+          <i class="iconfont icon-shangban" *ngIf="menu.icon=='icon-shangban'"></i>
+          <i class="iconfont icon-dkw_qiche" *ngIf="menu.icon=='icon-dkw_qiche'"></i>
+          <i class="iconfont icon-xinxi1" *ngIf="menu.icon=='icon-xinxi1'"></i>
         </button>
         <button class="nav-des" ion-button block outline clear>{{menu.name}}</button>
       </ion-col>

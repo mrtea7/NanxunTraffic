@@ -2,6 +2,7 @@ import {Component, ViewChild, ElementRef} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 
 import {AmapProvider} from '../../providers/providers'
+import {ApiProvider} from '../../providers/providers'
 
 @IonicPage()
 @Component({
@@ -22,7 +23,7 @@ export class RoutePage {
   auto: any;
   @ViewChild('map_container') map_container: ElementRef;
 
-  constructor(public navCtrl: NavController, public amapProvider: AmapProvider) {
+  constructor(public navCtrl: NavController, public amapProvider: AmapProvider, public apiProvider: ApiProvider) {
   }
 
   loadMap(ele, mapName) {
@@ -47,19 +48,23 @@ export class RoutePage {
 
   //驾车线路规划
   drawDriving(policy) {
-    this.drawType = "driving";
-    this.checkRouteEmpty();
-    let drivingPolicy = policy;
-    this.amapProvider.drawDriving(this.route, drivingPolicy)
+    if (this.checkRouteEmpty()) {
+      this.drawType = "driving";
+      let drivingPolicy = policy;
+      this.amapProvider.drawDriving(this.route, drivingPolicy);
+    }
+
   }
 
   //公交路线规划
   drawTransfer() {
-    this.drawType = "transfer";
-    let self = this;
-    this.amapProvider.drawTransfer(this.route, function (data) {
-      self.reName(data)
-    })
+    if (this.checkRouteEmpty()) {
+      this.drawType = "transfer";
+      let self = this;
+      this.amapProvider.drawTransfer(this.route, function (data) {
+        self.reName(data)
+      })
+    }
   }
 
   //骑车线路规划
@@ -76,7 +81,7 @@ export class RoutePage {
 
 
   showRoute(policy) {
-    alert(this.drawType);
+    console.log("<policy>",policy);
     switch (this.drawType) {
       case "driving":
         this.drawDriving(policy);
@@ -94,9 +99,10 @@ export class RoutePage {
 
   checkRouteEmpty() {
     if (this.route.start.city == "" || this.route.start.place == "" || this.route.end.city == "" || this.route.start.place == "") {
-      return true
-    } else
+      this.apiProvider.alert("请完整填写起点和终点信息");
       return false
+    } else
+      return true
   }
 
   ionViewWillEnter() {
