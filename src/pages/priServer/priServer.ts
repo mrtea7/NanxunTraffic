@@ -16,13 +16,13 @@ export class PriServerPage {
     this.amapProvider.initMap(ele, mapName);
 
   }
-  ionViewWillEnter() {
-    this.loadMap(this.map_container.nativeElement, 'priServer');
-  }
-
-  ionViewWillLeave() {
-    this.amapProvider.destroyMap('priServer')
-  }
+  // ionViewWillEnter() {
+  //   this.loadMap(this.map_container.nativeElement, 'priServer');
+  // }
+  //
+  // ionViewWillLeave() {
+  //   this.amapProvider.destroyMap('priServer')
+  // }
 
 
 }

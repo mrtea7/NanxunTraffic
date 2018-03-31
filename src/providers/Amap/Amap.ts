@@ -38,19 +38,26 @@ export class AmapProvider {
   clearMap() {
     this.map.clearMap();
   }
+
   //驾车路线
   drawDriving(item, policy) {
     this.map.clearMap();
     let self = this;
     let drivingPolicy;
-    switch (policy){
-      case "time":
-        drivingPolicy = AMap.DrivingPolicy.LEAST_TIME;
-        break;
-      case "distance":
-        drivingPolicy = AMap.DrivingPolicy.LEAST_DISTANCE;
-        break;
+    if (policy) {
+      switch (policy) {
+        case "time":
+          drivingPolicy = AMap.DrivingPolicy.LEAST_TIME;
+          break;
+        case "distance":
+          drivingPolicy = AMap.DrivingPolicy.LEAST_DISTANCE;
+          break;
+        case "fee":
+          drivingPolicy = AMap.DrivingPolicy.LEAST_FEE;
+          break;
+      }
     }
+
     AMap.plugin('AMap.Driving', function () {
       let driving = new AMap.Driving({
         map: self.map,
@@ -63,19 +70,34 @@ export class AmapProvider {
         if (status == "error") {
           self.alert(result.info);
         }
-        console.log("<status>", status);
-        console.log("<result>", JSON.stringify(result));
+        // console.log("<status>", status);
+        // console.log("<result>", JSON.stringify(result));
       });
     })
   }
 
   //公交换乘
-  drawTransfer(item, callBack) {
+  drawTransfer(item, policy,callBack) {
     this.map.clearMap();
     let self = this;
+    let drivingPolicy;
+    if (policy) {
+      switch (policy) {
+        case "time":
+          drivingPolicy = AMap.LEAST_TIME;
+          break;
+        case "distance":
+          drivingPolicy = AMap.LEAST_WALK;
+          break;
+        case "fee":
+          drivingPolicy = AMap.LEAST_FEE;
+          break;
+      }
+    }
     AMap.plugin('AMap.Transfer', function () {
       let transfer = new AMap.Transfer({
-        map: self.map
+        map: self.map,
+        policy: drivingPolicy || AMap.LEAST_TIME
       });
       transfer.search([
         {keyword: item.start.place, city: item.start.city},

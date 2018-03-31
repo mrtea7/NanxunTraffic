@@ -15,11 +15,11 @@ export class TraInfoPage {
     this.amapProvider.initMap(ele, mapName);
 
   }
-  ionViewWillEnter() {
-    this.loadMap(this.map_container.nativeElement, 'traInfo');
-  }
+  // ionViewWillEnter() {
+  //   this.loadMap(this.map_container.nativeElement, 'traInfo');
+  // }
 
-  ionViewWillLeave() {
-    this.amapProvider.destroyMap('traInfo')
-  }
+  // ionViewWillLeave() {
+  //   this.amapProvider.destroyMap('traInfo')
+  // }
 }

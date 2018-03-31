@@ -13,9 +13,9 @@ import {ApiProvider} from '../../providers/providers'
 
 export class RoutePage {
   routes: any[] = [
-    {type: '推荐', time: '54', distance: '19.4'},
+    {type: '时间最短', time: '50', distance: '21.4'},
     {type: '距离最短', time: '55', distance: '19.4'},
-    {type: '时间最短', time: '50', distance: '21.4'}
+    {type: '收费最少', time: '54', distance: '19.4'}
 
   ];
   route: any = {start: {city: "", place: ""}, end: {city: "", place: ""}, temp: {city: "", place: ""}};
@@ -57,11 +57,11 @@ export class RoutePage {
   }
 
   //公交路线规划
-  drawTransfer() {
+  drawTransfer(policy) {
     if (this.checkRouteEmpty()) {
       this.drawType = "transfer";
       let self = this;
-      this.amapProvider.drawTransfer(this.route, function (data) {
+      this.amapProvider.drawTransfer(this.route, policy,function (data) {
         self.reName(data)
       })
     }
@@ -81,13 +81,12 @@ export class RoutePage {
 
 
   showRoute(policy) {
-    console.log("<policy>",policy);
     switch (this.drawType) {
       case "driving":
-        this.drawDriving(policy);
+        this.drawDriving(policy.type=="时间最短"?"time":policy.type=="距离最短"?"distance":"fee");
         break;
       case "transfer":
-        this.drawTransfer();
+        this.drawTransfer(policy.type=="时间最短"?"time":policy.type=="距离最短"?"distance":"fee");
         break;
       case "riding":
         break;

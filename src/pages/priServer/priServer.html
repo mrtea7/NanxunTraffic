@@ -4,28 +4,11 @@
   </ion-navbar>
 
 
-  <ion-toolbar no-border-top color="platform">
-    <ion-searchbar placeholder="搜地点、查公交、找线路" (ionInput)="filterItems($event)"></ion-searchbar>
-    <ion-list>
-      <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-        <h2>{{item.name}}</h2>
-        <p>{{item.about}}</p>
-        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-      </button>
-    </ion-list>
-  </ion-toolbar>
+
 
 </ion-header>
 <ion-content>
-  <div #map_container class="map_container" id="map_container"></div>
-  <div class="btn-group">
-    <button ion-button small (click)="locate()">
-      <ion-icon name="zihangche"></ion-icon>
-    </button>
-    <button ion-button small>
-      <ion-icon name="home"></ion-icon>
-    </button>
-  </div>
+  <iframe src="http://m.amap.com/around/?locations=120.413308,30.857365&keywords=%E9%A9%BE%E6%A0%A1,%E5%8A%A0%E6%B2%B9%E7%AB%99,%E6%B1%BD%E8%BD%A6%E7%BB%B4%E4%BF%AE&defaultIndex=1&defaultView=map&searchRadius=50000&key=968d69fd345542d72607a5764ce9e6d9" frameborder="0" width="100%" height="100%"></iframe>
 </ion-content>
 <ion-footer text-center>
 

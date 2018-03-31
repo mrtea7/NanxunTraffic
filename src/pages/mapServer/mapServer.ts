@@ -77,7 +77,7 @@ export class MapServerPage {
   openItem(item) {
     switch (item.type) {
       case "line":
-        this.amapProvider.drawTransfer(item, function () {
+        this.amapProvider.drawTransfer(item, "",function () {
         });
         break;
       case "points":
