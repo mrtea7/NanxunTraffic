@@ -8,8 +8,8 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class HomePage {
   menus:any[] =[
-    {icon:'icon-ditu',name:'地图服务',component: 'MapServerPage' },
-    {icon:'icon-shangban',name:'公众交通',component: 'PubTransPage' },
+    {icon:'icon-ditu',name:'交通信息',component: 'MapServerPage' },
+    {icon:'icon-shangban',name:'交通出行',component: 'PubTransPage' },
     {icon:'icon-dkw_qiche',name:'私家车服务',component: 'PriServerPage'},
     {icon:'icon-xinxi1',name:'路况信息',component: 'TraInfoPage'}
   ];

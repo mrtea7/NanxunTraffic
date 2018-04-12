@@ -13,6 +13,7 @@ export class AmapProvider {
   map: any;//地图对象
   auto: any;
   mapName: string;//地图名字
+  rootPath: string = "";
 
   constructor(public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl: ToastController) {
   }
@@ -77,7 +78,7 @@ export class AmapProvider {
   }
 
   //公交换乘
-  drawTransfer(item, policy,callBack) {
+  drawTransfer(item, policy, callBack) {
     this.map.clearMap();
     let self = this;
     let drivingPolicy;
@@ -121,7 +122,7 @@ export class AmapProvider {
     let self = this;
     let markers = [];
     let icon = new AMap.Icon({
-      image: 'https://vdata.amap.com/icons/b18/1/2.png',
+      image: './assets/imgs/taxi-blue.png',
       size: new AMap.Size(24, 24)
     });
     for (let i = 0; i < item.length; i++) {

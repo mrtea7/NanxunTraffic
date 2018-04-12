@@ -1,32 +1,36 @@
 <ion-header>
   <ion-navbar no-border-bottom>
-    <ion-title>地图服务</ion-title>
+    <ion-title>交通信息</ion-title>
   </ion-navbar>
 
-  <ion-toolbar no-border-top color="platform">
-    <ion-searchbar placeholder="" (ionInput)="filterItems($event)"></ion-searchbar>
-    <ion-list>
-      <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
-        <h2>{{item.name}}</h2>
-        <p>{{item.about}}</p>
-        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-      </button>
-    </ion-list>
-  </ion-toolbar>
+  <!--<ion-toolbar no-border-top color="platform">-->
+    <!--<ion-searchbar placeholder="" (ionInput)="filterItems($event)"></ion-searchbar>-->
+    <!--<ion-list>-->
+      <!--<button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">-->
+        <!--<h2>{{item.name}}</h2>-->
+        <!--<p>{{item.about}}</p>-->
+        <!--<ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>-->
+      <!--</button>-->
+    <!--</ion-list>-->
+  <!--</ion-toolbar>-->
 
 </ion-header>
 <ion-content>
   <div #map_container class="map_container" id="map_container"></div>
   <div class="btn-group">
-    <button ion-button small (click)="locate()">
-      <ion-icon name="leaf"></ion-icon>
+    <button ion-button small (click)="taxi()">
+      <i class="iconfont icon-chuzuchetianchong"></i>
     </button>
-    <button ion-button small>
-      <ion-icon name="home"></ion-icon>
+    <button ion-button small (click)="plan()">
+      <i class="iconfont icon-guihuabuzhi"></i>
+    </button>
+    <button ion-button small (click)="construction()">
+      <i class="iconfont icon-shigongzhong"></i>
     </button>
   </div>
 
+
 </ion-content>
-<ion-footer text-center>
-  <img class="route" (click)="showRoutePage()" src="../assets/imgs/route.png">
-</ion-footer>
+<!--<ion-footer text-center>-->
+  <!--<img class="route" (click)="showRoutePage()" src="../assets/imgs/route.png">-->
+<!--</ion-footer>-->

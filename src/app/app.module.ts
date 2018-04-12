@@ -19,7 +19,7 @@ import { ApiProvider } from '../providers/providers';
   ],
   imports: [
     BrowserModule,HttpModule,
-    IonicModule.forRoot(MyApp,{ backButtonText: '返回'})
+    IonicModule.forRoot(MyApp,{ backButtonText: ''})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
