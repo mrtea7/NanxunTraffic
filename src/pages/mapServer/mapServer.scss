@@ -11,6 +11,12 @@ page-map {
   }
   ion-footer{
     height: 50px;
+    background: white;
+    .plate{
+      font-size: large;
+      font-weight: bolder;
+      display: block;
+    }
     .route {
       height: 75px;
       position: relative;

@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 
-import {ApiProvider} from '../../providers/providers'
+import {ApiProvider, AppGlobal} from '../../providers/providers'
 
+import {ConstructionDetailPage} from '../constructionDetail/constructionDetail'
 @IonicPage()
 @Component({
   selector: 'page-construction',
@@ -11,6 +12,22 @@ import {ApiProvider} from '../../providers/providers'
 
 
 export class ConstructionPage {
-  constructor(public navCtrl: NavController,  public apiProvider: ApiProvider) {
+  list: any[] = [
+
+  ];
+
+  constructor(public navCtrl: NavController, public apiProvider: ApiProvider) {
+    this.apiProvider.httpGet(AppGlobal.API.getConstruction, {queryParam: ''}, res => {
+      if (res.flag == "true") {
+        this.list = res.data;
+      }
+      else {
+        this.apiProvider.toast(res.message)
+      }
+    })
+  }
+
+  itemSelected(item) {
+    this.navCtrl.push('ConstructionDetailPage', item);
   }
 }

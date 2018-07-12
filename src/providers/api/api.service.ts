@@ -13,7 +13,8 @@ export class AppGlobal {
   }
   //接口基地址
   // static domain = "https://tlimama.tongedev.cn";
-  static domain = "http://192.168.0.75:4130/pf.web.runtime/nanxun.app";
+  static domain = "http://112.11.250.133:8200/pf.web.runtime/nanxun.app";
+  // static domain = "http://192.168.0.236:8080/pf.web.runtime/nanxun.app";
 
   //接口地址
   static API: any = {
@@ -21,7 +22,10 @@ export class AppGlobal {
     getProducts: '/api/ionic/getProducts',
     getDetails: '/api/ionic3/details',
     getTest:'/initial/initialQuery',
-    getTaxi:'/initial/taxiGpsInfo'
+    getTaxi:'/initial/taxiGpsInfo',
+    getBicycle:'/initial/bycleGpsInfo',
+    getConstruction:'/initial/roadGpsInfo',
+    getPlan:'/initial/planInfo'
   };
 }
 

@@ -1,7 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>路况信息</ion-title>
-  </ion-navbar>
+    <ion-navbar no-border-bottom hideBackButton="true">
+      <ion-buttons left>
+        <button ion-button icon-only (click)="goBack()">
+          <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>信息服务</ion-title>
+    </ion-navbar>
 
 
   <!--<ion-toolbar no-border-top color="platform">-->
@@ -17,16 +22,36 @@
 
 </ion-header>
 <ion-content>
-  <!--<div #map_container class="map_container" id="map_container"></div>-->
-  <!--<div class="btn-group">-->
-    <!--<button ion-button small (click)="locate()">-->
-      <!--<ion-icon name="zihangche"></ion-icon>-->
-    <!--</button>-->
-    <!--<button ion-button small>-->
-      <!--<ion-icon name="home"></ion-icon>-->
-    <!--</button>-->
-  <!--</div>-->
-  <iframe src="http://m.amap.com/around/?locations=120.413308,30.857365&keywords=%E5%81%9C%E8%BD%A6%E5%9C%BA&defaultIndex=3&defaultView=map&searchRadius=5000&key=968d69fd345542d72607a5764ce9e6d9" frameborder="0" width="100%" height="100%"></iframe>
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/plan.png">
+      </ion-thumbnail>
+      <h2>交通规划信息公示</h2>
+      <button ion-button clear item-end (click)="plan()">查看</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/building.png">
+      </ion-thumbnail>
+      <h2>道路施工阻断信息</h2>
+      <button ion-button clear item-end (click)="construction()">查看</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/weather.png">
+      </ion-thumbnail>
+      <h2>天气信息</h2>
+      <button ion-button clear item-end (click)="weather()">查看</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="./assets/imgs/tour.png">
+      </ion-thumbnail>
+      <h2>旅游信息</h2>
+      <button ion-button clear item-end (click)="tour()">查看</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <ion-footer text-center>
 

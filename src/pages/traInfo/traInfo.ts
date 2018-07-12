@@ -1,5 +1,6 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
+import {HomePage} from "../home/home";
 
 import {AmapProvider} from '../../providers/providers'
 @IonicPage()
@@ -14,6 +15,21 @@ export class TraInfoPage {
   loadMap(ele, mapName) {
     this.amapProvider.initMap(ele, mapName);
 
+  }
+  plan() {
+    this.navCtrl.push('PlanPage')
+  }
+  weather() {
+    this.navCtrl.push('WeatherPage')
+  }
+  tour() {
+    this.navCtrl.push('TourPage')
+  }
+  construction() {
+    this.navCtrl.push('ConstructionPage')
+  }
+  goBack(){
+    this.navCtrl.push(HomePage);
   }
   // ionViewWillEnter() {
   //   this.loadMap(this.map_container.nativeElement, 'traInfo');

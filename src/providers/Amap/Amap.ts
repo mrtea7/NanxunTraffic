@@ -14,6 +14,7 @@ export class AmapProvider {
   auto: any;
   mapName: string;//地图名字
   rootPath: string = "";
+  infoWindow:any;
 
   constructor(public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl: ToastController) {
   }
@@ -115,28 +116,35 @@ export class AmapProvider {
       });
     })
   }
+  //在指定位置打开信息窗体
 
   //点标注
-  drawPoints(item) {
+  drawPoints(item,imgUrl,callBack) {
     this.clearMap();
     let self = this;
     let markers = [];
     let icon = new AMap.Icon({
-      image: './assets/imgs/taxi-blue.png',
+      image: imgUrl,//'./assets/imgs/taxi-blue.png'
       size: new AMap.Size(24, 24)
     });
     for (let i = 0; i < item.length; i++) {
       let marker;
-      marker = new AMap.Marker({
-        icon: icon,
-        position: item[i].center.split(','),
-        title: item[i].name,
-        map: self.map
-      });
-      markers.push(marker);
+      if(item[i].center){
+        marker = new AMap.Marker({
+          icon: icon,
+          position: item[i].center.split(','),
+          title: item[i].name,
+          map: self.map
+        });
+        marker.on('click', function() {
+          if (callBack instanceof Function) {
+            callBack(item[i]);
+          }
+        });
+        markers.push(marker);
+      }
     }
     self.map.setFitView();
-
   }
 
   autoComplete() {
