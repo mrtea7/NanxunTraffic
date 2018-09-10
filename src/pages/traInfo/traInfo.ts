@@ -25,6 +25,9 @@ export class TraInfoPage {
   tour() {
     this.navCtrl.push('TourPage')
   }
+  bus() {
+    this.navCtrl.push('BusPage')
+  }
   construction() {
     this.navCtrl.push('ConstructionPage')
   }

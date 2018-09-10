@@ -62,6 +62,7 @@ export class MapServerPage {
       ]
     }
   ];
+  yizhanPoints:any = [];
   point: any = [
     {
       "name": "一个点",
@@ -120,6 +121,15 @@ export class MapServerPage {
     this.info = {};
     // this.getCategories("information",'');
     this.amapProvider.drawPoints(this.informationPoints,'./assets/imgs/information-blue.png',function (data) {
+      _this.pointFlag = true;
+      _this.info= {name:data.plate,detail:data.describe[0].info};
+    });
+  }
+  yizhan() {
+    let _this = this;
+    this.info = {};
+    this.getCategories("yizhan",'');
+    this.amapProvider.drawPoints(this.yizhanPoints,'./assets/imgs/yizhan-blue.png',function (data) {
       _this.pointFlag = true;
       _this.info= {name:data.plate,detail:data.describe[0].info};
     });
@@ -203,6 +213,17 @@ export class MapServerPage {
     //虚拟情报板
     else if (type=='information') {
       this.apiProvider.httpGet(AppGlobal.API.getInformation, {queryParam: param}, res => {
+        if (res.flag == "true") {
+          this.informationPoints = res.data;
+        }
+        else {
+          this.apiProvider.toast(res.message)
+        }
+      })
+    }
+    //公路驿站
+    else if (type=='yizhan') {
+      this.apiProvider.httpGet(AppGlobal.API.getRoadStation, {queryParam: param}, res => {
         if (res.flag == "true") {
           this.informationPoints = res.data;
         }

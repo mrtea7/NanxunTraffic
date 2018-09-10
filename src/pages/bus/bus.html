@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      实时公交
+    </ion-title>
+  </ion-navbar>
+  <ion-segment [(ngModel)]="kind" color="primary">
+
+    <ion-segment-button value="bus">
+      附近站点
+    </ion-segment-button>
+    <ion-segment-button value="line">
+      所有线路
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="filterItems($event)" placeholder="输入关键字"></ion-searchbar>
+  <ion-grid>
+    <ion-list>
+      <div *ngIf="!hasData" text-center>
+        <p>暂无信息</p>
+      </div>
+      <ion-item *ngFor="let item of getItems(kind)" (click)="openPage(item)">
+        <div *ngIf="item.name">
+          <h2>{{item.name}}</h2>
+          <p>途径公交：{{item.busline}}</p>
+        </div>
+        <div *ngIf="!item.name" class="box">
+          <div>
+            <h2>{{item.busline}}</h2>
+            <p>{{item.busStop}}</p>
+            <p>{{item.busTime}}</p>
+          </div>
+          <div>
+            <h2>{{item.distance}}</h2>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

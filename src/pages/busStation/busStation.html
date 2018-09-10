@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      途径线路
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-list>
+      <div *ngIf="!hasData" text-center>
+        <p>暂无信息</p>
+      </div>
+      <ion-item *ngFor="let item of getItems()" (click)="openLine(item.busline)">
+        <div class="box">
+          <div>
+            <h2>{{item.busline}}</h2>
+            <p>{{item.busStop}}</p>
+            <p>{{item.busTime}}</p>
+          </div>
+          <div>
+            <h2>{{item.distance}}</h2>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>
