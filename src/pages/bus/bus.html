@@ -19,8 +19,11 @@
   <ion-searchbar (ionInput)="filterItems($event)" placeholder="输入关键字"></ion-searchbar>
   <ion-grid>
     <ion-list>
-      <div *ngIf="!hasData" text-center>
-        <p>暂无信息</p>
+      <div *ngIf="!hasData && kind=='bus'" text-center>
+        <p>暂无站点信息</p>
+      </div>
+      <div *ngIf="!hasLine && kind=='line'" text-center>
+        <p>暂无线路信息</p>
       </div>
       <ion-item *ngFor="let item of getItems(kind)" (click)="openPage(item)">
         <div *ngIf="item.name">

@@ -20,6 +20,7 @@ export class BusPage {
   nearBus: any[];
   allBusLine: any[];
   hasData: boolean = true;
+  hasLine: boolean = true;
 
   constructor(public navCtrl: NavController, public amapProvider: AmapProvider, public apiProvider: ApiProvider, private geolocation: Geolocation) {
     this.getGPS();
@@ -118,9 +119,9 @@ export class BusPage {
       if (res.flag == "true" && res.data.length != 0) {
         this.allBusLine = res.data;
         this.apps.line = this.allBusLine;
-        this.hasData = true;
+        this.hasLine = true;
       }  else if (res.flag == "true" && res.data.length == 0) {
-        this.hasData = false;
+        this.hasLine = false;
       }
       else {
         this.apiProvider.toast(res.message)

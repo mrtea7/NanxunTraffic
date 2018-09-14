@@ -17,13 +17,10 @@
       <ion-item *ngFor="let item of getBuss(); let i = index">
         <div class="box">
           <div>
-            <h2>{{item.busline}}路 第{{item.order}}辆</h2>
+            <h2>{{item.busline}} 第{{item.order}}辆</h2>
             <p>{{item.busStop}}</p>
-            <p>下一站：{{item.nextStation}}</p>
-          </div>
-          <div>
             <h2 *ngIf="nowStation">距离本站还有{{item.stationCount}}站</h2>
-            <p>还有{{item.distance}}米到达下一站</p>
+            <p>还有{{item.distance}}米到达下一站：{{item.nextStation}}</p>
           </div>
         </div>
       </ion-item>
