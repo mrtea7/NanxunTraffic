@@ -14,6 +14,7 @@ export class AppGlobal {
   //接口基地址
   // static domain = "https://tlimama.tongedev.cn";
   static domain = "http://112.11.250.133/pf.web.runtime/nanxun.app";
+  // static domain = "http://172.21.112.90:8200/pf.web.runtime/nanxun.app";
   // static domain = "http://192.168.0.220:8080/pf.web.runtime/nanxun.app";
 
   //接口地址
